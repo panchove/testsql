@@ -99,11 +99,11 @@ def load_persons():
         phone_number 
       )
     )
+    ado.commit()
     ado.print_error()
 
     conteo+=1
 
-  ado.commit()
   ado.closedb()
 
 
