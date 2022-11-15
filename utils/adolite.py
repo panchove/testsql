@@ -10,9 +10,9 @@ class AdoLite():
   """
     Adolite Class
   """
-  self.__cnn = None
-  self.__error = None
-  self.__cursor = None
+  __cnn = None
+  __error = None
+  __cursor = None
 
   @property
   def cnn(self):
@@ -25,7 +25,6 @@ class AdoLite():
   @property
   def cursor(self):
     return self.__cursor
-  
   
 
   def __init__(self, name:str):
@@ -153,7 +152,7 @@ class AdoLite():
     try:
       if self.__cnn:
         if self.__new_cursor():
-          with open(name=name, mode="r", encoding=encoding) as f:
+          with open(file=name, mode="r", encoding=encoding) as f:
             buffer = f.read()
             self.__cursor.executescript(buffer)
           return True
