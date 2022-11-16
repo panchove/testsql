@@ -106,10 +106,10 @@ class AdoLite():
     self.__error = None
     try:
       if self.__cnn:
-        if self.__new_cursor():
-          self.__cursor.execute(mi_sql)
-          return True
-      return False
+        if not self.is_cursor():
+          self.__new_cursor()
+        self.__cursor.execute(mi_sql)
+        return True
     except Error as err:
       self.__error = err
     return False
@@ -121,10 +121,10 @@ class AdoLite():
     self.__error = None
     try:
       if self.__cnn:
-        if self.__new_cursor():
-          self.__cursor.execute(mi_sql, mi_param)
-          return True
-      return False
+        if not self.is_cursor():
+          self.__new_cursor()
+        self.__cursor.execute(mi_sql, mi_param)
+        return True
     except Error as err:
       self.__error = err
     return False
@@ -136,10 +136,10 @@ class AdoLite():
     self.__error = None
     try:
       if self.__cnn:
-        if self.__new_cursor():
-          self.__cursor.executescript(mi_script)
-          return True
-      return False
+        if not self.is_cursor():
+          self.__new_cursor()
+        self.__cursor.executescript(mi_script)
+        return True
     except Error as err:
       self.__error = err
     return False
@@ -151,12 +151,12 @@ class AdoLite():
     self.__error = None
     try:
       if self.__cnn:
-        if self.__new_cursor():
-          with open(file=name, mode="r", encoding=encoding) as f:
-            buffer = f.read()
-            self.__cursor.executescript(buffer)
-          return True
-      return False
+        if not self.is_cursor(): 
+          self.__new_cursor()
+        with open(file=name, mode="r", encoding=encoding) as f:
+          buffer = f.read()
+          self.__cursor.executescript(buffer)
+        return True
     except Error as err:
       self.__error = err
     except FileNotFoundError as err:

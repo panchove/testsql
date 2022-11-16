@@ -67,7 +67,6 @@ def load_phone_codes(name:str):
 def load_persons():
   hobbies = load_hobbies("files/hobbies.txt")
   trades = load_trades("files/trades.txt")
-  countries = load_countries("files/countries.txt")
   states = load_states("files/states.txt")
   fnames = load_fnames("files/fnames.txt")
   lnames = load_lnames("files/lnames.txt")
@@ -77,7 +76,6 @@ def load_persons():
   while conteo < MAX_PERSONS:
 
     hobby_id = randint(0, len(hobbies))+1
-    country_id = randint(0, len(countries))+1
     state_id = randint(0, len(states))+1
     trade_id = randint(0, len(trades))+1
     fname_id  = randint(0, len(fnames)-1)
@@ -99,11 +97,13 @@ def load_persons():
         phone_number 
       )
     )
-    ado.commit()
+
+    # INSERT HOBBIES
+    # ==============
     ado.print_error()
 
     conteo+=1
-
+  ado.commit()
   ado.closedb()
 
 
