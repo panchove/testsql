@@ -1,7 +1,3 @@
-SQL_INSERT_COUNTRY="""
-INSERT INTO countries(name) VALUES(?);
-"""
-
 SQL_INSERT_STATE="""
 INSERT INTO states(name) VALUES(?);
 """
